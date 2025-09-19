@@ -1,0 +1,36 @@
+import java.util.*;
+
+class CreditCard {
+    double amount;
+    CreditCard(double amt){ amount=amt; }
+    void processPayment(){ System.out.println("Base Card Payment: "+amount); }
+}
+class SilverCard extends CreditCard {
+    SilverCard(double amt){ super(amt); }
+    void processPayment(){ System.out.println("Silver Card Charge: "+(amount+amount*0.02)); }
+}
+class GoldCard extends CreditCard {
+    GoldCard(double amt){ super(amt); }
+    void processPayment(){ System.out.println("Gold Card Charge: "+(amount+amount*0.01)); }
+}
+class PlatinumCard extends CreditCard {
+    PlatinumCard(double amt){ super(amt); }
+    void processPayment(){ System.out.println("Platinum Card Discounted: "+(amount-amount*0.01)); }
+}
+
+public class CardDemo {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter payment amount: "); double amt=sc.nextDouble();
+        System.out.print("Enter card type (silver/gold/platinum): "); String type=sc.next().toLowerCase();
+
+        CreditCard card;
+        switch(type){
+            case "silver": card=new SilverCard(amt); break;
+            case "gold": card=new GoldCard(amt); break;
+            case "platinum": card=new PlatinumCard(amt); break;
+            default: card=new CreditCard(amt);
+        }
+        card.processPayment();  // overriding in action
+    }
+}
