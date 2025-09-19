@@ -1,0 +1,87 @@
+import java.util.*;
+import java.util.stream.*;
+
+public class MultiOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\n*** MENU ***");
+        System.out.println("1. Largest & Smallest in Array");
+        System.out.println("2. Sort Array Ascending & Descending");
+        System.out.println("3. Fibonacci Series");
+        System.out.println("4. Prime Check");
+        System.out.print("Enter choice: ");
+
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1: // Largest & Smallest
+                System.out.print("Enter array size: ");
+                int n1 = sc.nextInt();
+                int[] arr1 = new int[n1];
+                System.out.print("Enter elements: ");
+                for (int i = 0; i < n1; i++) {
+                    arr1[i] = sc.nextInt();
+                }
+                int max = arr1[0], min = arr1[0];
+                for (int num : arr1) {
+                    if (num > max) max = num;
+                    if (num < min) min = num;
+                }
+                System.out.println("Largest = " + max + ", Smallest = " + min);
+                break;
+
+            case 2: // Sort Array
+                System.out.print("Enter array size: ");
+                int n2 = sc.nextInt();
+                int[] arr2 = new int[n2];
+                System.out.println("Enter elements: ");
+                for (int i = 0; i < n2; i++) {
+                    arr2[i] = sc.nextInt();
+                }
+                Arrays.sort(arr2);
+                System.out.println("Ascending: " + Arrays.toString(arr2));
+
+                Integer[] desc = Arrays.stream(arr2).boxed()
+                        .sorted(Collections.reverseOrder())
+                        .toArray(Integer[]::new);
+                System.out.println("Descending: " + Arrays.toString(desc));
+                break;
+
+            case 3: // Fibonacci
+                System.out.print("Enter n for Fibonacci: ");
+                int n3 = sc.nextInt();
+                int a = 0, b = 1;
+                System.out.print("Fibonacci: ");
+                for (int i = 0; i < n3; i++) {
+                    System.out.print(a + " ");
+                    int t = a + b;
+                    a = b;
+                    b = t;
+                }
+                System.out.println();
+                break;
+
+            case 4: // Prime check
+                System.out.print("Enter number: ");
+                int p = sc.nextInt();
+                boolean prime = p > 1;
+                for (int i = 2; i <= Math.sqrt(p); i++) {
+                    if (p % i == 0) {
+                        prime = false;
+                        break;
+                    }
+                }
+                if (prime)
+                    System.out.println(p + " is prime.");
+                else
+                    System.out.println(p + " is not prime.");
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+        }
+
+        sc.close();
+    }
+}
