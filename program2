@@ -1,0 +1,25 @@
+import java.util.*;
+class Student {
+    String name; int age, marks;
+    Student(String n,int a,int m){name=n;age=a;marks=m;}
+    void show(){System.out.println("Student: "+name+" Age:"+age+" Marks:"+marks);}
+}
+class Employee {
+    String name,id; double sal;
+    Employee(String n,String i,double s){name=n;id=i;sal=s;}
+    void show(){System.out.println("Employee: "+name+" ID:"+id+" Salary:"+sal);}
+}
+class Main2 {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Student name: "); String sn=sc.next();
+        System.out.print("Age: "); int age=sc.nextInt();
+        System.out.print("Marks: "); int m=sc.nextInt();
+        Student s=new Student(sn,age,m); s.show();
+
+        System.out.print("Employee name: "); String en=sc.next();
+        System.out.print("ID: "); String id=sc.next();
+        System.out.print("Salary: "); double sal=sc.nextDouble();
+        Employee e=new Employee(en,id,sal); e.show();
+    }
+}
